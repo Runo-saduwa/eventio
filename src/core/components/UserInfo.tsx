@@ -7,9 +7,9 @@ import { Button } from "@mantine/core"
 
 export const UserInfo = () => {
   const currentUser = useCurrentUser()
-  const [logoutMutation] = useMutation(logout);
+  const [logoutMutation] = useMutation(logout)
 
-
+  if (!currentUser) return null
   if (currentUser) {
     return (
       <>
@@ -25,17 +25,6 @@ export const UserInfo = () => {
           <br />
           User role: <code>{currentUser.role}</code>
         </div>
-      </>
-    )
-  } else {
-    return (
-      <>
-        <Button component={Link} href={Routes.SignupPage()}>
-          Sign Up
-        </Button>
-        <Button component={Link} href={Routes.LoginPage()}>
-          Login
-        </Button>
       </>
     )
   }

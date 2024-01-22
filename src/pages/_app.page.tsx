@@ -1,5 +1,5 @@
 import { ErrorBoundary, AppProps } from "@blitzjs/next"
-import React from "react"
+import React, { Suspense } from "react"
 import { withBlitz } from "src/blitz-client"
 import { MantineProvider } from "@mantine/core"
 
@@ -17,7 +17,9 @@ function MyApp({ Component, pageProps }: AppProps) {
           colorScheme: "dark",
         }}
       >
-        <Component {...pageProps} />
+        <Suspense>
+          <Component {...pageProps} />
+        </Suspense>
       </MantineProvider>
     </ErrorBoundary>
   )

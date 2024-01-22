@@ -1,14 +1,20 @@
 import Layout from "src/core/layouts/Layout"
 import { BlitzPage } from "@blitzjs/next"
 import { UserInfo } from "@/core/components/UserInfo"
-import { Horizontal } from "mantine-layout-components"
+import { Horizontal, Vertical } from "mantine-layout-components"
+import { AuthenticationForm } from "@/core/components/MainAuthenticationForm"
+import { useCurrentUser } from "@/features/users/hooks/useCurrentUser"
 
 const Home: BlitzPage = () => {
+  const currentUser = useCurrentUser()
   return (
     <Layout title="Home">
-      <Horizontal debug spacing="lg">
-        <UserInfo />
-      </Horizontal>
+      {currentUser && <UserInfo />}
+      {!currentUser && (
+        <Vertical fullH fullW center>
+          <AuthenticationForm  />
+        </Vertical>
+      )}
     </Layout>
   )
 }

@@ -19,3 +19,4 @@ const LoginPage: BlitzPage = () => {
 }
 
 export default LoginPage
+

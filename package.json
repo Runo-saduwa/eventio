@@ -27,6 +27,7 @@
     "@mantine/hooks": "^6.0.19",
     "@mantine/next": "^6.0.19",
     "@prisma/client": "4.6.1",
+    "@tabler/icons-react": "^2.46.0",
     "blitz": "2.0.0-beta.32",
     "mantine-layout-components": "^0.1.2",
     "next": "13.4.5",
