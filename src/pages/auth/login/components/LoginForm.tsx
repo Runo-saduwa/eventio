@@ -13,21 +13,14 @@ type LoginFormProps = {
 }
 
 export const LoginForm = (props: LoginFormProps) => {
-  const [loginMutation] = useMutation(login)
+  const [$login] = useMutation(login)
 
   const onSubmit = async (values) => {
     try {
-      const user = await loginMutation(values)
+      const user = await $login(values)
       props.onSuccess?.(user)
     } catch (error: any) {
-      if (error instanceof AuthenticationError) {
-        return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
-      } else {
-        return {
-          [FORM_ERROR]:
-            "Sorry, we had an unexpected error. Please try again. - " + error.toString(),
-        }
-      }
+      console.log(error)
     }
   }
 

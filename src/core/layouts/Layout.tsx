@@ -1,14 +1,17 @@
 import Head from "next/head"
 import React, { FC, Suspense } from "react"
 import { BlitzLayout, Routes } from "@blitzjs/next"
-import { AppShell, Navbar, Header, Text, Footer, Anchor } from "@mantine/core"
+import { AppShell, Navbar, Header, Text, Footer, Anchor, Button } from "@mantine/core"
 import { Horizontal, Vertical } from "mantine-layout-components"
 import Link from "next/link"
+import { useMutation } from "@blitzjs/rpc"
+import logout from "@/features/auth/mutations/logout"
 
 const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
   title,
   children,
 }) => {
+  const [logoutMutation] = useMutation(logout)
   return (
     <>
       <Head>
@@ -25,10 +28,19 @@ const Layout: BlitzLayout<{ title?: string; children?: React.ReactNode }> = ({
         // }
         header={
           <Header height={60} p="xs">
-            <Horizontal fullH fullW>
+            <Horizontal fullH fullW spaceBetween>
               <Anchor underline={false} color="grey.3" component={Link} href={Routes.Home()}>
                 Eventio
               </Anchor>
+              <Button
+              size="xs"
+              variant="light"
+                onClick={async () => {
+                  await logoutMutation()
+                }}
+              >
+                Logout
+              </Button>
             </Horizontal>
           </Header>
         }
