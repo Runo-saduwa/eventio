@@ -3,19 +3,8 @@ import { useFormContext } from "react-hook-form"
 import { ErrorMessage } from "@hookform/error-message"
 import { Input } from "@mantine/core"
 
-export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
-  /** Field name. */
-  name: string
-  /** Field label. */
-  label: string
-  /** Field type. Doesn't include radio buttons and checkboxes */
-  type?: "text" | "password" | "email" | "number"
-  outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
-  labelProps?: ComponentPropsWithoutRef<"label">
-}
 
-export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ label, outerProps, labelProps, name, ...props }, ref) => {
+export const LabeledTextField = ({ label, outerProps, labelProps, name, ...props }) => {
     const {
       register,
       formState: { isSubmitting, errors },
@@ -45,11 +34,10 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
             align-items: start;
             font-size: 1rem;
           }
-  
+
         `}</style>
       </div>
     )
   }
-)
 
 export default LabeledTextField
